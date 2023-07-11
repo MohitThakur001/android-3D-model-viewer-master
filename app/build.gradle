@@ -1,0 +1,39 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    namespace 'com.andresoviedo'
+    compileSdkVersion 33
+
+    defaultConfig {
+        applicationId "com.andresoviedo"
+        minSdkVersion 14
+        targetSdkVersion 33
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("android-3d-model-viewer.jks")
+            storePassword ""
+            keyAlias "android-3d-model-viewer"
+            keyPassword ""
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            signingConfig signingConfigs.release
+        }
+    }
+    compileOptions {
+        targetCompatibility 1.8
+        sourceCompatibility 1.8
+    }
+}
+
+dependencies {
+    implementation 'com.android.support:support-compat:27.1.1'
+    implementation project(':engine')
+}
